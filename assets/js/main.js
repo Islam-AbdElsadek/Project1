@@ -91,35 +91,53 @@ const pageNavLinks = document.querySelectorAll('.top-nav .nav-links a, .nav-box 
 const scrollTarget = document.getElementById('section-2');
 const boxNav = document.querySelector('.nav-box');
 const topNav = document.querySelector('.top-nav');
+const boxNavMobile = document.querySelector('.top-nav-mobile-box');
+const topNavMobile = document.querySelector('.top-nav-mobile');
 let lastNavState = null;
 
 function updateNavVisibility() {
-    if (!scrollTarget || !boxNav || !topNav || window.innerWidth < 992) {
+    if (!scrollTarget) {
         boxNav?.classList.remove('hidden');
         topNav?.classList.add('hidden');
-        console.log(1)
+        boxNavMobile?.classList.remove('hidden');
+        topNavMobile?.classList.add('hidden');
         return;
     }
-    // console.log(`currentScroll: ${window.pageYOffset}, targetOffset: ${scrollTarget.offsetTop}, windowWidth: ${window.innerWidth}`)
 
     const targetOffset = scrollTarget.offsetTop;
     const currentScroll = window.pageYOffset;
     const shouldShowTopNav = currentScroll >= targetOffset - 120;
-    // console.log('Scroll:', currentScroll, 'Target:', targetOffset, 'Show Top Nav:', shouldShowTopNav)
-    // console.log(document.documentElement.scrollTop);
-    
+    const shouldShowMobileTopNav = currentScroll >= 120;
+
+    if (window.innerWidth < 992) {
+        if (shouldShowMobileTopNav && lastNavState !== 'mobile-top') {
+            boxNavMobile?.classList.add('hidden');
+            void topNavMobile?.offsetWidth;
+            topNavMobile?.classList.remove('hidden');
+            lastNavState = 'mobile-top';
+        } else if (!shouldShowMobileTopNav && lastNavState !== 'mobile-box') {
+            boxNavMobile?.classList.remove('hidden');
+            topNavMobile?.classList.add('hidden');
+            lastNavState = 'mobile-box';
+        }
+
+        boxNav?.classList.remove('hidden');
+        topNav?.classList.add('hidden');
+        return;
+    }
+
+    boxNavMobile?.classList.add('hidden');
+    topNavMobile?.classList.add('hidden');
+
     if (shouldShowTopNav && lastNavState !== 'top') {
-        boxNav.classList.add('hidden');
-        // topNav.classList.add('hidden');
-        void topNav.offsetWidth; // Trigger reflow
-        topNav.classList.remove('hidden');
+        boxNav?.classList.add('hidden');
+        void topNav.offsetWidth;
+        topNav?.classList.remove('hidden');
         lastNavState = 'top';
-        console.log(2)
     } else if (!shouldShowTopNav && lastNavState !== 'box') {
-        boxNav.classList.remove('hidden');
-        topNav.classList.add('hidden');
+        boxNav?.classList.remove('hidden');
+        topNav?.classList.add('hidden');
         lastNavState = 'box';
-        console.log(3)
     }
 }
 
@@ -140,9 +158,9 @@ pageNavLinks.forEach(link => {
     });
 });
 
-// Testimonial swiper initialization
+// review swiper initialization
 if (typeof Swiper !== 'undefined') {
-    new Swiper('.testimonial-slider-2', {
+    new Swiper('.review-slider-2', {
         loop: true,
         speed: 800,
         slidesPerView: 1,
@@ -152,12 +170,12 @@ if (typeof Swiper !== 'undefined') {
             disableOnInteraction: false,
         },
         pagination: {
-            el: '.testimonial-slider-2 .swiper-pagination',
+            el: '.review-slider-2 .swiper-pagination',
             type: 'progressbar',
         },
         navigation: {
-            nextEl: '.testimonial-slider-2 .swiper-button-next',
-            prevEl: '.testimonial-slider-2 .swiper-button-prev',
+            nextEl: '.review-slider-2 .swiper-button-next',
+            prevEl: '.review-slider-2 .swiper-button-prev',
         },
     });
 }
