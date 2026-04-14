@@ -889,6 +889,18 @@ section:nth-child(even) {
 }
 
 @media (max-width: 575px) {
+    #section-3 .projects-slider-wrapper .swiper-slide {
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #section-3 .student-project-card {
+        width: min(86vw, 320px) !important;
+        margin: 40px 0px;
+    }
+
     .card-content {
         padding: 1.2rem;
     }
@@ -913,8 +925,14 @@ section:nth-child(even) {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 20000;
+    padding: 20px;
     animation: fadeIn 0.3s ease;
+}
+
+body.video-modal-open {
+    overflow: hidden;
+    touch-action: none;
 }
 
 @keyframes fadeIn {
@@ -930,11 +948,18 @@ section:nth-child(even) {
     position: relative;
     width: 90%;
     max-width: 900px;
+    max-height: 90vh;
     background: #000;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     animation: slideUp 0.3s ease;
+}
+
+.video-modal-content iframe {
+    display: block;
+    width: 100%;
+    height: min(70vh, 600px);
 }
 
 @keyframes slideUp {
@@ -963,13 +988,36 @@ section:nth-child(even) {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1001;
+    z-index: 20001;
     transition: all 0.3s ease;
 }
 
 .video-modal-close:hover {
     background: darken(var(--theme-green), 10%);
     transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+    .video-modal {
+        align-items: flex-start;
+        padding: 80px 12px 12px;
+    }
+
+    .video-modal-content {
+        width: 100%;
+        border-radius: 14px;
+    }
+
+    .video-modal-content iframe {
+        height: min(58vh, 420px);
+    }
+
+    .video-modal-close {
+        top: 10px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+    }
 }
 
 .mobile-image {

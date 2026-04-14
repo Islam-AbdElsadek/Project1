@@ -191,8 +191,11 @@ function initializeProjectSwipers() {
         const swiper = new Swiper(wrapper, {
             loop: true,
             speed: 800,
-            slidesPerView: 1.1,
-            spaceBetween: 20,
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 12,
+            slidesOffsetBefore: 0,
+            slidesOffsetAfter: 0,
             observer: true,
             observeParents: true,
             autoplay: {
@@ -211,18 +214,22 @@ function initializeProjectSwipers() {
                 576: {
                     slidesPerView: 2,
                     spaceBetween: 18,
+                    centeredSlides: false,
                 },
                 768: {
                     slidesPerView: 3,
                     spaceBetween: 20,
+                    centeredSlides: false,
                 },
                 992: {
                     slidesPerView: 4,
                     spaceBetween: 24,
+                    centeredSlides: false,
                 },
                 1200: {
                     slidesPerView: 5,
                     spaceBetween: 24,
+                    centeredSlides: false,
                 },
             },
         });
@@ -275,10 +282,30 @@ window.addEventListener('load', () => {
 
 // Video play button functionality for all video buttons
 const videoPlayBtns = document.querySelectorAll('#section-3 .video-play-btn');
+
+const closeVideoModal = (modal) => {
+    if (!modal) {
+        return;
+    }
+
+    if (modal._handleEscape) {
+        document.removeEventListener('keydown', modal._handleEscape);
+    }
+
+    modal.remove();
+    document.body.classList.remove('video-modal-open');
+};
+
 videoPlayBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         const videoUrl = btn.dataset.video;
+
+        // Remove any existing modal before opening another one
+        const existingModal = document.querySelector('.video-modal');
+        if (existingModal) {
+            closeVideoModal(existingModal);
+        }
         
         // Create modal for video
         const modal = document.createElement('div');
@@ -291,18 +318,28 @@ videoPlayBtns.forEach(btn => {
         `;
         
         document.body.appendChild(modal);
+        document.body.classList.add('video-modal-open');
         
         // Close modal on close button click
         modal.querySelector('.video-modal-close').addEventListener('click', () => {
-            modal.remove();
+            closeVideoModal(modal);
         });
         
         // Close modal on outside click
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.remove();
+                closeVideoModal(modal);
             }
         });
+
+        // Close modal with Escape key
+        const handleEscape = (event) => {
+            if (event.key === 'Escape') {
+                closeVideoModal(modal);
+            }
+        };
+        modal._handleEscape = handleEscape;
+        document.addEventListener('keydown', handleEscape);
     });
 });
 
