@@ -462,3 +462,51 @@ window.addEventListener('resize', function() {
   nextParticle.height = window.innerHeight;
   redraw();
 });
+
+
+  /*=============================================
+	=         Instagram Active          =
+=============================================*/
+  $(".instagram-active").slick({
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    autoplay: true,
+    arrows: false,
+    swipe: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
+  });
