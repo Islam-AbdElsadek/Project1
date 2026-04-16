@@ -106,8 +106,8 @@ function updateNavVisibility() {
 
     const targetOffset = scrollTarget.offsetTop;
     const currentScroll = window.pageYOffset;
-    const shouldShowTopNav = currentScroll >= targetOffset - 120;
-    const shouldShowMobileTopNav = currentScroll >= targetOffset - 120;
+    const shouldShowTopNav = currentScroll >=  200;
+    const shouldShowMobileTopNav = currentScroll >=  200;
 
     if (window.innerWidth < 992) {
         if (shouldShowMobileTopNav && lastNavState !== 'mobile-top') {
@@ -221,6 +221,45 @@ if (typeof Swiper !== 'undefined') {
     // Ensure autoplay starts
     if (reviewSwiper && reviewSwiper.autoplay) {
         reviewSwiper.autoplay.start();
+    }
+
+    // Instagram swiper initialization (separate instance)
+    const instagramSwiper = new Swiper('.instagram-swiper', {
+        loop: true,
+        speed: 800,
+        spaceBetween: 0,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 2,
+        breakpoints: {
+            480: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+            },
+            576: {
+                slidesPerView: 3,
+                spaceBetween: 0,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+            },
+            992: {
+                slidesPerView: 5,
+                spaceBetween: 0,
+            },
+            1200: {
+                slidesPerView: 6,
+                spaceBetween: 0,
+            },
+        },
+    });
+    
+    // Ensure autoplay starts
+    if (instagramSwiper && instagramSwiper.autoplay) {
+        instagramSwiper.autoplay.start();
     }
 }
 
@@ -436,39 +475,6 @@ function animated_swiper(selector, init) {
 // animated_swiper(sliderActive2, sliderInit2);
 
 
-// see https://nextparticle.nextco.de for more informations
-
-var nextParticle = new NextParticle(document.all.logo);
-nextParticle.particleGap = 1;
-nextParticle.noise = 0;
-nextParticle.mouseForce = 30;
-nextParticle.size = Math.max(window.innerWidth, window.innerHeight);
-nextParticle.colorize = false;
-nextParticle.tint = '#FF00FF';
-nextParticle.minWidth = nextParticle.size;
-nextParticle.minHeight = nextParticle.size;
-nextParticle.maxWidth = nextParticle.size;
-nextParticle.maxHeight = nextParticle.size;
-
-var redraw = function() {
-  nextParticle.initPosition = "none";
-  nextParticle.initDirection = "none";
-  nextParticle.fadePostion = "none";
-  nextParticle.fadeDirection = "none";
-  nextParticle.minWidth = nextParticle.size;
-  nextParticle.minHeight = nextParticle.size;
-  nextParticle.maxWidth = nextParticle.size;
-  nextParticle.maxHeight = nextParticle.size;
-  nextParticle.color = nextParticle.colorize ? nextParticle.tint : '';
-  nextParticle.start();
-};
-
-
-window.addEventListener('resize', function() {
-  nextParticle.width = window.innerWidth;
-  nextParticle.height = window.innerHeight;
-  redraw();
-});
 
 
   /*=============================================
@@ -547,6 +553,40 @@ document.body.addEventListener('click', (e) => {
     if (e.target.closest('.mobile-menu .navigation a') && !e.target.closest('.dropdown-btn')) {
         console.log('Menu link clicked via delegation');
         closeMobileMenu();
+    }
+
+    // Handle dropdown button clicks
+    const dropdownBtn = e.target.closest('.mobile-menu .dropdown-btn');
+    if (dropdownBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const parentLi = dropdownBtn.parentElement;
+        const subMenu = parentLi.querySelector(':scope > .sub-menu');
+        if (!subMenu) return;
+
+        // Close other open sub-menus at the same level
+        const siblings = parentLi.parentElement.querySelectorAll(':scope > li');
+        siblings.forEach(sibling => {
+            if (sibling !== parentLi) {
+                const sibBtn = sibling.querySelector(':scope > .dropdown-btn');
+                const sibMenu = sibling.querySelector(':scope > .sub-menu');
+                if (sibBtn) sibBtn.classList.remove('open');
+                if (sibMenu) {
+                    sibMenu.style.maxHeight = null;
+                    sibMenu.classList.remove('open');
+                }
+            }
+        });
+
+        // Toggle current sub-menu
+        dropdownBtn.classList.toggle('open');
+        if (subMenu.classList.contains('open')) {
+            subMenu.style.maxHeight = null;
+            subMenu.classList.remove('open');
+        } else {
+            subMenu.classList.add('open');
+            subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
+        }
     }
 });
 
