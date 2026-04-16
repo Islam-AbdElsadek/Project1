@@ -303,34 +303,26 @@ function initializeProjectSwipers() {
                 delay: 4500,
                 disableOnInteraction: false,
             },
-            pagination: {
-                el: wrapper.querySelector('.swiper-pagination'),
-                type: 'progressbar',
-            },
-            navigation: {
-                nextEl: wrapper.querySelector('.swiper-button-next'),
-                prevEl: wrapper.querySelector('.swiper-button-prev'),
-            },
             breakpoints: {
                 576: {
-                    slidesPerView: 2,
+                    slidesPerView: 3,
                     spaceBetween: 18,
-                    centeredSlides: false,
+                    centeredSlides: true,
                 },
                 768: {
                     slidesPerView: 3,
                     spaceBetween: 20,
-                    centeredSlides: false,
+                    centeredSlides: true,
                 },
                 992: {
                     slidesPerView: 4,
                     spaceBetween: 24,
-                    centeredSlides: false,
+                    centeredSlides: true,
                 },
                 1200: {
                     slidesPerView: 5,
                     spaceBetween: 24,
-                    centeredSlides: false,
+                    centeredSlides: true,
                 },
             },
         });
@@ -474,6 +466,129 @@ function animated_swiper(selector, init) {
 }
 // animated_swiper(sliderActive2, sliderInit2);
 
+
+
+
+/*=============================================
+	=    Lightbox Gallery Functionality          =
+=============================================*/
+
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const lightboxBackdrop = document.getElementById('lightboxBackdrop');
+const currentImageNum = document.getElementById('currentImageNum');
+const totalImagesNum = document.getElementById('totalImagesNum');
+
+let currentImageIndex = 0;
+let uniquePopupImages = [];
+let allPopupImages = [];
+
+// Initialize lightbox
+function initLightbox() {
+    // Get all popup images - including duplicates from swiper
+    allPopupImages = Array.from(document.querySelectorAll('.popup-image'));
+    
+    // Get only unique images (filter out duplicates from swiper loop)
+    const imageUrls = new Set();
+    uniquePopupImages = [];
+    
+    allPopupImages.forEach((img) => {
+        const href = img.getAttribute('href');
+        if (!imageUrls.has(href)) {
+            imageUrls.add(href);
+            uniquePopupImages.push(img);
+        }
+    });
+    
+    // Update total count with unique images only
+    totalImagesNum.textContent = uniquePopupImages.length;
+
+    if (uniquePopupImages.length === 0) return;
+
+    // Add click listeners to all popup images
+    allPopupImages.forEach((img) => {
+        img.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Find the index in unique images array
+            const href = img.getAttribute('href');
+            const index = uniquePopupImages.findIndex(
+                uniqueImg => uniqueImg.getAttribute('href') === href
+            );
+            currentImageIndex = index;
+            openLightbox(index);
+        });
+    });
+}
+
+// Open lightbox
+function openLightbox(index) {
+    if (uniquePopupImages.length === 0) return;
+
+    currentImageIndex = index;
+    const imageUrl = uniquePopupImages[index].getAttribute('href');
+    
+    lightboxImage.src = imageUrl;
+    currentImageNum.textContent = index + 1;
+    
+    lightboxModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close lightbox
+function closeLightbox() {
+    lightboxModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Navigate to next image
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % uniquePopupImages.length;
+    openLightbox(currentImageIndex);
+}
+
+// Navigate to previous image
+function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + uniquePopupImages.length) % uniquePopupImages.length;
+    openLightbox(currentImageIndex);
+}
+
+// Close button click
+lightboxClose.addEventListener('click', closeLightbox);
+
+// Next button click
+lightboxNext.addEventListener('click', nextImage);
+
+// Previous button click
+lightboxPrev.addEventListener('click', prevImage);
+
+// Backdrop click to close
+lightboxBackdrop.addEventListener('click', closeLightbox);
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (!lightboxModal.classList.contains('active')) return;
+
+    if (e.key === 'ArrowRight') {
+        nextImage();
+    } else if (e.key === 'ArrowLeft') {
+        prevImage();
+    } else if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+
+// Initialize lightbox when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightbox);
+} else {
+    initLightbox();
+}
+
+// Also reinitialize on window load to ensure all images are loaded
+window.addEventListener('load', initLightbox);
 
 
 
