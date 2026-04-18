@@ -532,6 +532,30 @@ html {
     justify-content: space-between;
 }
 
+@media (max-width: 1500px) {
+    .nav-box {
+        padding: 16px 200px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .nav-box {
+        padding: 16px 150px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-box {
+        padding: 16px 60px;
+    }
+}
+
+@media (min-width: 900px) {
+    .nav-box {
+        padding: 16px 40px;
+    }
+}
+
 .nav-box.hidden {
     display: none !important;
 }
@@ -701,6 +725,30 @@ html {
     transition: all 0.4s ease;
 }
 
+@media (max-width: 1500px) {
+    .top-nav:not(.hidden) {
+        padding: 16px 150px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .top-nav:not(.hidden) {
+        padding: 16px 120px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .top-nav:not(.hidden) {
+        padding: 16px 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-nav:not(.hidden) {
+        padding: 16px 40px;
+    }
+}
+
 .top-nav.hidden {
     opacity: 0;
     transform: translateY(-20px);
@@ -836,7 +884,7 @@ section[id] {
 
 .whatsapp-tab{
     position: fixed;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -846,6 +894,13 @@ section[id] {
     z-index: 9999;
     color: var(--theme-green);
     font-size: 12px;
+}
+
+@media (max-width: 991px) {
+    .whatsapp-tab {
+        display: flex;
+    }
+    
 }
 
 .whatsapp-tab-circle {
