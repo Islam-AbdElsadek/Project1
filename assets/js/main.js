@@ -731,3 +731,48 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuLinksCount: mobileMenuLinks.length
     });
 });
+
+/*=============================================
+	=    Chatbot Tooltip Functionality            =
+=============================================*/
+
+// Show tooltip when page loads
+window.addEventListener('load', () => {
+    const tooltip = document.getElementById('chatbotTooltip');
+    if (tooltip) {
+        // Show tooltip
+        tooltip.classList.add('show');
+        
+        // Hide tooltip after 15 seconds
+        setTimeout(() => {
+            tooltip.classList.remove('show');
+        }, 15000);
+    }
+});
+
+// Hide tooltip when chatbot button is clicked
+chatbotBtn.addEventListener('click', () => {
+    const tooltip = document.getElementById('chatbotTooltip');
+    if (tooltip) {
+        tooltip.classList.remove('show');
+    }
+});
+
+// // Update tooltip position to match chatbot button
+// function updateTooltipPosition() {
+//     const tooltip = document.getElementById('chatbotTooltip');
+//     const chatbotBtnGroup = document.querySelector('.fixed-buttons-group');
+    
+//     if (tooltip && chatbotBtnGroup) {
+//         const groupBottom = window.getComputedStyle(chatbotBtnGroup).bottom;
+//         const bottomValue = parseInt(groupBottom);
+        
+//         // Position tooltip 60px above the button
+//         tooltip.style.bottom = (bottomValue + 70) + 'px';
+//     }
+// }
+
+// // Update tooltip position on scroll and window resize
+// window.addEventListener('scroll', updateTooltipPosition);
+// window.addEventListener('resize', updateTooltipPosition);
+// window.addEventListener('load', updateTooltipPosition);

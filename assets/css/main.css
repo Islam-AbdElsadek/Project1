@@ -268,6 +268,64 @@ html {
     transform: translateY(3px); 
 }
 
+/* Chatbot Tooltip Styling */
+.chatbot-tooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+    background-color: var(--white);
+    color: var(--theme-green);
+    padding: 7px 12px;
+    border-radius: 24px;
+    border-bottom-right-radius: 0;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(4, 92, 64, 0.2);
+    opacity: 0;
+    transform-origin: bottom right;
+    transform: scale(0.1);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    white-space: nowrap;
+    /* border: 2px solid var(--theme-green); */
+}
+
+/* .chatbot-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 00px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--white) transparent transparent transparent;
+} */
+
+.chatbot-tooltip.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+@media (max-width: 991px) {
+    .chatbot-tooltip {
+        bottom: 120px;
+        right: 20px;
+        padding: 8px 18px;
+        /* bottom: auto; */
+        /* top: 50%; */
+        transform: scale(0.1);
+        /* right: 50%; */
+        /* margin-right: -150px; */
+    }
+    
+    .chatbot-tooltip.show {
+        transform:scale(1);
+    }
+}
 
 
 /* Chat Window Styling */
