@@ -35,6 +35,11 @@
     --shadow: 0px 4px 25px rgba(0, 0, 0, 0.06);
 }
 
+html::selection {
+    color: var(--white);
+    background-color: var(--theme-green-2);
+}
+
 @keyframes slideUpLoader {
     0% {
         transform: translateY(0px);
@@ -751,13 +756,20 @@ section[id] {
     padding: 10px 12px;
     z-index: 9997;
     justify-content: space-around;
-    align-items: flex-end;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    align-items: center;
     gap: 8px;
-    /* backdrop-filter: blur(3px); */
+    backdrop-filter: blur(2px);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     transform: translateZ(0);
     will-change: transform;
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    
+    -webkit-mask: 
+    radial-gradient(circle 30px at 50% calc(0% + 8px), transparent 98%, black 100%);
+    mask: 
+    radial-gradient(circle 30px at 50% calc(0% + 8px), transparent 98%, black 100%);
 }
 
 @media (max-width: 991px) {
@@ -778,7 +790,7 @@ section[id] {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 8px 0;
+    padding: 4px 0;
     color: var(--theme-green);
     font-size: 12px;
     text-decoration: none;
@@ -812,26 +824,41 @@ section[id] {
     line-height: 1;
 }
 
-.whatsapp-tab {
+.whatsapp-tab{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    bottom: 23px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    color: var(--theme-green);
+    font-size: 12px;
+}
+
+.whatsapp-tab-circle {
+    position: relative;
     width: 54px;
     height: 54px;
     border-radius: 50%;
     background: var(--theme-green);
+    margin-bottom: 15px;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 16px rgba(74,103,65,.4);
-    position: relative;
     transition: transform .2s, box-shadow .2s;
 }
 
-.whatsapp-tab i {
+.whatsapp-tab-circle i {
     font-size: 22px;
     color: var(--white);
 }
 
-.bottom-nav .tab:active .whatsapp-tab {
+.bottom-nav .tab:active .whatsapp-tab-circle {
     transform: scale(.93);
 }
 
@@ -1304,6 +1331,7 @@ section:nth-child(even) {
 }
 .banner-shape {
 	position: absolute;
+    pointer-events: none;
 	z-index: 0;
 }
 .banner-shape.one {
