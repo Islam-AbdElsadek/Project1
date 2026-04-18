@@ -791,10 +791,12 @@ section[id] {
 
 .bottom-nav .tab.active {
     color: var(--theme-gold);
+    background-color: rgba(137, 203, 145, 0.5);
+    border-radius: 12px;
+    border-bottom: 2px solid var(--theme-gold);
 }
 
-.bottom-nav .tab.active > i,
-.bottom-nav .tab:hover > i {
+.bottom-nav .tab.active > i{
     color: var(--theme-gold);
     font-size: 30px;
     transition: all 0.25s ease;
