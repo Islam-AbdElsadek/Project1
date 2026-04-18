@@ -2031,6 +2031,11 @@ body.video-modal-open {
     padding-left: 105px;
 }
 
+.q-wrapper .q-content .q-items .accordion .accordion-item h2 button:not(.accordion-button.collapsed),
+.q-wrapper .q-content .q-items .accordion .accordion-item h2 button:not(.accordion-button.collapsed)::before {
+    color: var(--theme-gold) !important;
+}
+
 @media (max-width: 1199px) {
     .q-wrapper .q-content .q-items .accordion .accordion-item h2 button {
         padding-left: 60px;
@@ -2047,6 +2052,7 @@ body.video-modal-open {
     position: relative;
     z-index: 1;
     padding-bottom: 20px;
+    background-color: var(--white) !important;
 }
 
 @media (max-width: 1199px) {
@@ -2112,7 +2118,7 @@ body.video-modal-open {
 }
 
 .q-wrapper .q-content .q-items .accordion .accordion-collapse.show {
-    background-color: var(--bg);
+    background-color: var(--white) !important;
 }
 
 .q-wrapper.style-2 .q-content {
