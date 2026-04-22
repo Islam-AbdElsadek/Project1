@@ -1392,6 +1392,7 @@ section:nth-child(even) {
 .banner-section {
     padding: 41px 0 15px;
     position: relative;
+    overflow: hidden;
 }
 
 .banner-content .banner-caption {
@@ -1436,11 +1437,17 @@ section:nth-child(even) {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -15px;
+    bottom: 75px;
     max-width: 550px;
     max-height: 540px;
     display: block;
     margin: 0 auto;
+    z-index: 1;
+}
+
+.banner-images .bg-shape {
+    max-width: 1000px;
+    z-index: 0;
 }
 
 .banner-content {
@@ -1477,14 +1484,53 @@ section:nth-child(even) {
 }
 
 .banner-shape.three {
-    bottom: -15px;
+    bottom: -50px;
     left: 40px;
+}
+
+.banner-shape.three img {
+    width: 350px;
 }
 
 .banner-shape.four {
     bottom: 0;
     right: 60px;
 }
+
+/* floating shapes */
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+.floating-shape {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-shape.shape1 {
+    right: 15%;
+    top: 20%;
+}
+
+.floating-shape.shape1 img {
+    width: 80px;
+    rotate: 45deg;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+
 
 /* button style */
 .btn {
@@ -1534,7 +1580,7 @@ section:nth-child(even) {
 }
 
 .btn-two {
-    background: var(--theme-green) none repeat scroll 0 0;
+    background: var(--theme-green-2) none repeat scroll 0 0;
 }
 
 .btn-two::before {
@@ -1577,10 +1623,8 @@ button:focus {
     }
 
     .banner-shape.three {
-        bottom: 0;
-        left: 30px;
+        left: 10px;
         max-width: 210px;
-        z-index: -1;
     }
 
     .banner-shape.four {
