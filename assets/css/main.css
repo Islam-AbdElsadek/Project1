@@ -3938,6 +3938,22 @@ html[lang="ar"] .d-flex.flex-row.justify-content-start > div {
     right: -25px;
 }
 
+html[dir="rtl"] .footer-shape.one {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .footer-shape.two {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .footer-shape.two img {
+    right: auto;
+    left: -25px;
+    transform: rotateY(180deg);
+}
+
 .footer-widget {
     margin: 0 0 50px;
 }
@@ -4102,6 +4118,10 @@ html[lang="ar"] .d-flex.flex-row.justify-content-start > div {
         right: -17px;
     }
 
+    html[dir="rtl"] .footer-shape.two img {
+        left: -17px;
+    }
+
     .footer-widgets-wrap .row [class*="col-"]:nth-child(4n+4) .footer-widget {
         padding-left: 0;
     }
@@ -4135,6 +4155,11 @@ html[lang="ar"] .d-flex.flex-row.justify-content-start > div {
 @media (max-width: 991.98px) {
     .footer-shape.two {
         right: 0;
+        bottom: 30%;
+    }
+    html[dir="rtl"] .footer-shape.two {
+        right: auto;
+        left: 0;
         bottom: 30%;
     }
 }
