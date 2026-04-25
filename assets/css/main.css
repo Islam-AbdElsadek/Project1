@@ -2652,7 +2652,7 @@ body.video-modal-open {
 }
 
 .choose-us-wrapper .icon-items.icon-item-3 .icon {
-    background-color: var(--theme-blue);
+    background-color: var(--theme-green);
 }
 
 @media (max-width: 1399px) {
@@ -2913,7 +2913,7 @@ html[dir="rtl"] .choose-us-wrapper .icon-items.icon-item-3 {
 
 /* Flaticon icons replacement with Font Awesome */
 .flaticon-satisfaction::before {
-    content: "\f58b";
+    content: "\f5a2";
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     font-size: 60px;
@@ -2953,7 +2953,7 @@ html[dir="rtl"] .choose-us-wrapper .icon-items.icon-item-3 {
 }
 
 .flaticon-instructor::before {
-    content: "\f007";
+    content: "\f51c";
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     font-size: 60px;
