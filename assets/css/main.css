@@ -2018,7 +2018,7 @@ html[dir= "rtl"] .q-section .floating-shape.shape-1 {
     letter-spacing: 0;
     line-height: 1.4;
     margin-bottom: 0;
-    padding: 19px 50px;
+    padding: 19px 0;
     text-align: center;
     text-transform: capitalize;
     touch-action: manipulation;
@@ -2069,6 +2069,7 @@ button:focus {
     outline: none;
     box-shadow: none;
 }
+
 
 /* Banner Area Responsive Styles */
 @media (max-width: 1500px) {
