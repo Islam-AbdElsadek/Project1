@@ -821,7 +821,7 @@ function initScrollAnimations() {
     };
 
     // Function to check if element is in viewport
-    function isInViewport(element, offset = 50) {
+    function isInViewport(element, offset = 20) {
         const rect = element.getBoundingClientRect();
         return rect.top <= (window.innerHeight - offset) && rect.bottom >= 0;
     }
@@ -869,11 +869,11 @@ function initScrollAnimations() {
     // Check elements on scroll
     let scrollCheckTimeout;
     function onScroll() {
-        // Debounce scroll event
+        // Debounce scroll event with minimal delay
         clearTimeout(scrollCheckTimeout);
         scrollCheckTimeout = setTimeout(() => {
             checkAllElements();
-        }, 100);
+        }, 10);
     }
 
     // Initial check

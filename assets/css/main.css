@@ -96,7 +96,7 @@ html::selection {
     letter-spacing: 2px;
     text-transform: uppercase;
     text-shadow: 0 0 10px var(--theme-green);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -835,7 +835,7 @@ html {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-color: var(--theme-green-3);
+    background-color: var(--theme-gold);
     color: white;
     display: flex;
     align-items: center;
