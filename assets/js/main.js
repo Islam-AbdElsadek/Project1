@@ -882,19 +882,19 @@ function initScrollAnimations() {
 // Initialize scroll animations when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        // Wait for loader to disappear (4.2s: 3.2s delay + 1s animation duration)
-        // Adding extra 200ms buffer to ensure loader is completely gone
+        // Wait for loader to disappear (2.0s: 1.5s delay + 0.5s animation duration)
+        // Adding extra 100ms buffer to ensure loader is completely gone
         setTimeout(() => {
             initScrollAnimations();
             initTooltip();
-        }, 4400);
+        }, 2100);
     });
 } else {
     // Wait for loader to disappear if page is already loaded
     setTimeout(() => {
         initScrollAnimations();
         initTooltip();
-    }, 4400);
+    }, 2100);
 }
 
 // Reinitialize animations for dynamically added elements
@@ -1022,13 +1022,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Delay banner animations until loader disappears
-// Loader animation: 1s duration + 3.2s delay = 4.2s total
+// Loader animation: 0.5s duration + 1.5s delay = 2.0s total
 setTimeout(() => {
     const pausedAnimations = document.querySelectorAll('.banner-section .pause-animation');
     pausedAnimations.forEach(element => {
         element.classList.remove('pause-animation');
     });
-}, 4200);
+}, 2000);
 
 
 // Add wow fadeInUp animations with staggered delays to all page elements

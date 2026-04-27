@@ -75,7 +75,7 @@ html::selection {
     justify-content: center;
     align-items: center;
     z-index: 21000;
-    animation: slideUpLoader 1s 3.2s linear forwards;
+    animation: slideUpLoader 0.5s 1.5s linear forwards;
 }
 
 .loader {
@@ -96,7 +96,7 @@ html::selection {
     letter-spacing: 2px;
     text-transform: uppercase;
     text-shadow: 0 0 10px var(--theme-green);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -276,9 +276,9 @@ html {
     transform: translateY(3px);
 }
 
-html[dir="rtl"] .chatbot-btn img  {
+/* html[dir="rtl"] .chatbot-btn img  {
     transform: translateY(3px) rotateY(180deg);
-}
+} */
 
 /* Chatbot Tooltip Styling */
 .chatbot-tooltip {
@@ -701,6 +701,7 @@ html[dir="rtl"] .chatbot-btn img  {
 .top-nav-mobile-box-button {
     width: 50px;
     height: 50px;
+    position: relative;
 }
 
 .top-nav-mobile-button:hover,
@@ -816,6 +817,7 @@ html[dir="rtl"] .chatbot-btn img  {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 
@@ -824,6 +826,23 @@ html[dir="rtl"] .chatbot-btn img  {
     padding: 0 12px;
     font-size: 16px;
     font-weight: 600;
+}
+
+.gift-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--theme-green-3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(4, 92, 64, 0.3);
 }
 
 section[id] {
@@ -1053,6 +1072,16 @@ section[id] {
         display: none !important;
     }
 }
+
+html[dir="rtl"] .top-nav,
+html[dir="rtl"] .top-nav-mobile,
+html[dir="rtl"] .top-nav-box,
+html[dir="rtl"] .top-nav-mobile-box,
+html[dir="rtl"] .bottom-nav {
+    direction: ltr;
+}
+
+
 
 .fixed-left-buttons {
     position: fixed;
@@ -1419,7 +1448,6 @@ section[id] {
 /* Section Styles */
 
 section {
-    padding: 4rem 0;
     transition: background-color 0.3s ease;
 }
 
@@ -1476,9 +1504,6 @@ html[dir="rtl"] .projects-section .section-title h2 {
 }
 
 
-.title-warp {
-    width: fit-content;
-}
 
 .courses-section .section-title .title-warp,
 .projects-section .section-title .title-warp {
@@ -1492,6 +1517,11 @@ html[dir="rtl"] .projects-section .section-title h2 {
     height: 10px;
     background: url(../img/bar/gold-bar.svg) no-repeat center;
     background-size: 100% 100%;
+}
+
+.title-warp {
+    width: fit-content;
+    margin-bottom: 20px !important;
 }
 
 @media (max-width: 991px) {
@@ -1701,7 +1731,7 @@ html[dir="rtl"] .projects-section .section-title h2 {
 
 .courses-section .floating-shape.shape-1 {
     right: 0;
-    top: 30%;
+    top: 35%;
     animation: floatLeftRight 3s ease-in-out infinite;
 }
 .courses-section .floating-shape.shape-2 {
@@ -1790,6 +1820,10 @@ html[dir= "rtl"] .q-section .floating-shape.shape-1 {
         width: 70px;
     }
 
+    .courses-section .floating-shape.shape-1 {
+        top: 40%;
+    }
+
     .review-section .floating-shape.shape-1 {
         left: calc(50% - 100px);
     }
@@ -1842,6 +1876,10 @@ html[dir= "rtl"] .q-section .floating-shape.shape-1 {
         width: 50px;
     }
 
+    .courses-section .floating-shape.shape-1 {
+        top: 35%;
+    }
+
     .projects-section .floating-shape.shape-1 {
         right: -5%;
     }
@@ -1882,7 +1920,7 @@ html[dir= "rtl"] .q-section .floating-shape.shape-1 {
     }
 
     .courses-section .floating-shape.shape-1 {
-        top: 35%;
+        top: 40%;
     }
 
     .projects-section .floating-shape.shape-1 {
@@ -2107,7 +2145,8 @@ button:focus {
 
     .banner-shape.one {
         /* width: 70px; */
-        left: -50px
+        left: -50px;
+        display: none;
     }
 
     .banner-shape.one img {
@@ -2120,6 +2159,7 @@ button:focus {
         top: auto;
         bottom: 40%;
         opacity: 0.5;
+
     }
 
     .banner-shape.two img {
@@ -2880,6 +2920,7 @@ html[dir="rtl"] .choose-us-wrapper .icon-items.icon-item-3 {
 
 .section-padding {
     padding: 60px 0;
+    padding-top: 40px;
     display: block;
 }
 
@@ -3807,14 +3848,16 @@ html[dir="rtl"] .q-wrapper .q-content .q-items .accordion .accordion-button.coll
     display: flex;
     gap: 20px;
     padding: 15px 0;
+    align-items: center;
 }
 
 .scrolling-wrap .comm {
     display: flex;
     align-items: center;
-    animation: scroll 60s linear infinite;
+    animation: scroll 45s linear infinite;
     gap: 30px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .scrolling-wrap .comm .player-textslide {
@@ -3963,7 +4006,7 @@ html[dir="rtl"] .q-wrapper .q-content .q-items .accordion .accordion-button.coll
     }
 
     100% {
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% - 50px));
     }
 }
 
@@ -4075,7 +4118,7 @@ html[dir="rtl"] .q-wrapper .q-content .q-items .accordion .accordion-button.coll
 /* ========================== RTL (Arabic) Layout Fixes ========================== */
 
 /* RTL: Fixed Buttons Group */
-[dir="rtl"] .fixed-buttons-group,
+/* [dir="rtl"] .fixed-buttons-group,
 html[lang="ar"] .fixed-buttons-group {
     right: auto;
     left: 30px;
@@ -4087,10 +4130,10 @@ html[lang="ar"] .fixed-buttons-group {
         right: auto;
         left: 10px;
     }
-}
+} */
 
 /* RTL: Chatbot Tooltip */
-[dir="rtl"] .chatbot-tooltip,
+/* [dir="rtl"] .chatbot-tooltip,
 html[lang="ar"] .chatbot-tooltip {
     right: auto;
     left: 50px;
@@ -4105,10 +4148,10 @@ html[lang="ar"] .chatbot-tooltip {
         right: auto;
         left: 20px;
     }
-}
+} */
 
 /* RTL: Chat Window */
-[dir="rtl"] .chat-window,
+/* [dir="rtl"] .chat-window,
 html[lang="ar"] .chat-window {
     right: auto;
     left: 100px;
@@ -4120,7 +4163,7 @@ html[lang="ar"] .chat-window {
         right: auto;
         left: 10px;
     }
-}
+} */
 
 /* RTL: Bot Message Styling */
 [dir="rtl"] .chat-card .card-body .bg-body-tertiary,
@@ -4150,7 +4193,7 @@ html[lang="ar"] .chat-card .card-footer a {
 }
 
 /* RTL: Gift Menu */
-[dir="rtl"] .gift-menu,
+/* [dir="rtl"] .gift-menu,
 html[lang="ar"] .gift-menu {
     right: auto;
     left: 0;
@@ -4179,7 +4222,7 @@ html[lang="ar"] .gift-menu .menu-box {
     left: auto;
     right: 0px;
     box-shadow: 9px 0 14px 0px rgb(0 0 0 / 6%);
-}
+} */
 
 /* RTL: Message Container Alignment */
 [dir="rtl"] .d-flex.flex-row.justify-content-start,
